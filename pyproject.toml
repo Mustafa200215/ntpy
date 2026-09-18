@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ntpy"
+version = "0.1.0"
+description = "A Python library for number theory"
+
+authors = [
+    {name = "Mustafa Hato"}
+]
+
+license = {file = "LICENSE"}
+
+keywords = [
+    "number theory",
+    "mathematics",
+    "prime numbers",
+    "factorize",
+    "modular arithmetic"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+[tool.setuptools.packages.find]
+include = ["ntpy*"]
