@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-pip install ntpy
+pip install git+https://github.com/Mustafa200215/ntpy.git
 ```
 
 ## Usage
