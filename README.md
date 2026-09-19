@@ -40,6 +40,8 @@ ntpy.generate_primes(20)
 ```python
 ntpy.factorize(360)
 # {2: 3, 3: 2, 5: 1}
+ntpy.prime_factorize(360)
+# [2,3,5]
 ```
 
 ### Divisors
