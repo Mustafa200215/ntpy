@@ -31,6 +31,11 @@ import ntpy
 ntpy.is_prime(17)
 # True
 
+#You can perform the Miller-Rabin primality test and customize the number of test rounds:
+# Check if a number is prime using Miller-Rabin with 5 rounds
+ntpy.is_prime_miller_rabin(17, k=5)
+# True
+
 ntpy.generate_primes(20)
 # [2, 3, 5, 7, 11, 13, 17, 19]
 ```
