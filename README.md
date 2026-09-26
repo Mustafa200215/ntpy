@@ -1,107 +1,101 @@
 # ntpy
 
-**ntpy** is a Python library for number theory and mathematical computations.
+مكتبة Python بسيطة لأساسيات نظرية الأعداد وعمليات حسابية مفيدة.
 
-## Features
+الهدف
+------
+ntpy تهدف إلى تقديم أدوات سهلة الاستخدام للتعامل مع: الأعداد الأولية، تحليل العوامل، القواسم، دالة أويلر (phi)، دالة موبيوس، ونظرية الباقي الصينية (CRT).
 
-* Prime number generation
-* Primality testing
-* Integer factorization
-* Prime factorization
-* Divisor calculations
-* Euler's totient function
-* Möbius function
-* Chinese Remainder Theorem
+الميزات
+-------
+- توليد الأعداد الأولية
+- اختبار أولية العدد (Miller–Rabin)
+- تحليل عدد إلى عوامله الأولية
+- استخراج العوامل الأولية
+- حساب القواسم، عدد القواسم، ومجموع القواسم
+- دالة أويلر (euler_phi)
+- دالة موبيوس (mobius)
+- حل أنظمة البواقي باستخدام CRT
 
-## Installation
+التثبيت
+--------
+يمكن تثبيت النسخة الحالية مباشرة من GitHub:
 
 ```bash
 pip install git+https://github.com/Mustafa200215/ntpy.git
 ```
 
-## Usage
+أو استنساخ المستودع وتثبيته مح��يًا:
+
+```bash
+git clone https://github.com/Mustafa200215/ntpy.git
+cd ntpy
+pip install .
+```
+
+البدء السريع — أمثلة استخدام
+---------------------------
 
 ```python
 import ntpy
+
+# اختبار أولية
+print(ntpy.is_prime(17))          # True
+
+# توليد أولية حتى حد
+print(ntpy.generate_primes(20))   # [2, 3, 5, 7, 11, 13, 17, 19]
+
+# تحليل العوامل
+print(ntpy.factorize(360))       # {2: 3, 3: 2, 5: 1}
+print(ntpy.prime_factorize(360)) # [2, 3, 5]
+
+# القواسم
+print(ntpy.divisors(12))         # [1, 2, 3, 4, 6, 12]
+print(ntpy.num_divisors(12))     # 6
+print(ntpy.sum_divisors(12))     # 28
+
+# دالة أويلر وموبيوس
+print(ntpy.euler_phi(10))        # 4
+print(ntpy.mobius(30))           # -1
+
+# Chinese Remainder Theorem
+modulus, solution = ntpy.crt([3, 5], [2, 3])
+print(modulus, solution)         # (15, 8)  => x ≡ 8 (mod 15)
 ```
 
-### Prime numbers
+ملاحظات وقيود
+-------------
+- دوال المكتبة مناسبة للأعداد الصحيحة الصغيرة والمتوسطة. لبعض الوظائف (مثل تحليل الأعداد الكبيرة جدًا) قد تحتاج خوارزميات أسرع (مثلاً Pollard Rho).
+- is_prime تستخدم اختبار Miller–Rabin بعدد افتراضي من الجولات؛ يمكن تعديل عدد الجولات عبر الوسيط `k` لزيادة الثقة.
 
-```python
-ntpy.is_prime(17)
-# True
+تنمية واختبار
+--------------
+المشروع يحتوي على مجلد `tests/` مع اختبارات بوحدة `pytest`. لتشغيل الاختبارات محليًا:
 
-#You can perform the Miller-Rabin primality test and customize the number of test rounds:
-# Check if a number is prime using Miller-Rabin with 5 rounds
-ntpy.is_prime(17, k=5)
-# True
-
-ntpy.generate_primes(20)
-# [2, 3, 5, 7, 11, 13, 17, 19]
+```bash
+pip install -r requirements.txt   # إن وُجد
+pytest -q
 ```
 
-### Factorization
+اقتراحات لتحسين المستودع
+------------------------
+- إضافة نوعية المعطيات (type hints) و docstrings لكل دالة.
+- تحسين is_prime لاستخدام قواعد حتمية (deterministic bases) لما يصل إلى 64-bit إن أمكن.
+- إضافة Pollard's Rho لتحسين تحليل الأعداد الكبيرة.
+- إضافة CI (GitHub Actions) لتشغيل الاختبارات والتحقق من تنسيق الكود (black, flake8, mypy).
 
-```python
-ntpy.factorize(360)
-# {2: 3, 3: 2, 5: 1}
-ntpy.prime_factorize(360)
-# [2,3,5]
-```
+المساهمة
+--------
+مرحب بالمساهمات! الرجاء فتح Issue أو Pull Request. قد تفيد إضافة ملف CONTRIBUTING.md لتوضيح إرشادات المساهمة.
 
-### Divisors
+الرخصة
+------
+المشروع مرخّص بموجب رخصة MIT — انظر ملف LICENSE.
 
-```python
-ntpy.divisors(12)
-# [1, 2, 3, 4, 6, 12]
+المؤلف
+------
+Mustafa Hato (MHD)
 
-ntpy.num_divisors(12)
-# 6
-
-ntpy.sum_divisors(12)
-# 28
-```
-
-### Euler's totient function
-
-```python
-ntpy.euler_phi(10)
-# 4
-```
-
-### Möbius function
-
-```python
-ntpy.mobius(30)
-# -1
-```
-
-### Chinese Remainder Theorem
-
-```python
-ntpy.crt([3, 5], [2, 3])
-# (15, 8)
-```
-
-This represents:
-
-```text
-x ≡ 2 (mod 3)
-x ≡ 3 (mod 5)
-```
-
-The result means:
-
-```text
-x ≡ 8 (mod 15)
-```
-
-## License
-
-This project is licensed under the MIT License.
-
-## Author
-
-**Mustafa Hato**
-
-Project identity: **MHD**
+رابط المشروع
+-------------
+https://github.com/Mustafa200215/ntpy
